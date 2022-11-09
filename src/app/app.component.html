@@ -2,7 +2,18 @@
   <h1> Template Forms</h1>
   <br>
 
-  <form #userForm="ngForm">
+  <form #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <!-- angular auatoatically attach ngForm directive to thre form tag 
+    and we use the template refernce variable to refer the ngForm Directive 
+  and we can access all the properties of ngForm directive using the refernce userForm
+{{userForm.form.valid}}
+--> 
+<!-- 
+  submit form dat to server
+  - add novalidate attribute this prevent browser validation from kicking in when click on submit button
+  2- bind to ngSubmit evevnt which emitted or fired when submit button clicked
+  3- assighn ngSubmit to a handler (method in comp class)
+ -->
     {{userForm.value | json}}
 
     <h2> user model</h2>
@@ -10,7 +21,9 @@
 
     <div class="form-group">
       <label>Name</label>
-      <input type="text" #name="ngModel" class="form-control" name="userName" [(ngModel)]="userModel.name"/>
+      <input type="text" required #name="ngModel" class="form-control is-invalid" name="userName" [(ngModel)]="userModel.name"/>
+    <br>
+    <small style="color: red" [class.d-none]="name.valid || name.untouched">Name required</small>
     </div>
     <br>
      {{name.untouched}}

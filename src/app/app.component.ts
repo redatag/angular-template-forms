@@ -10,4 +10,9 @@ export class AppComponent {
   title = 'template-forms';
   topics = ['Angular', 'React', 'Vue'];
   userModel = new User ('Reda', 'ss@fd.com',123456,'Avnguler', '5 pm',true);
+
+
+  onSubmit(){
+    console.log(this.userModel);
+  }
 }
